@@ -1,7 +1,7 @@
 # https://help.github.com/en/articles/metadata-syntax-for-github-actions
-name: 'Container Scan'
+name: 'Container Scan - AbhishekChd Testing'
 description: 'Check for vulnerabilities in your container image'
-author: 'crazy-max'
+author: 'abhishekchd'
 branding:
   icon: 'shield'
   color: 'green'
