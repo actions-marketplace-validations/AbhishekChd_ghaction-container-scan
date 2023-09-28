@@ -78,8 +78,10 @@ async function run(): Promise<void> {
     let isUnhealthy = false;
 
     if (scanResult.vulns) {
+      core.info("valns: " + scanResult.vulns);
       await context.asyncForEach(scanResult.vulns, async v => {
         const vulnSeverity = trivy.SeverityName.get(v.Severity);
+        core.info("Scanning for annotations");
         if (vulnSeverity) {
           const res: Result = {
             severity: vulnSeverity,
@@ -132,6 +134,8 @@ async function run(): Promise<void> {
       return;
     }
 
+    core.info(`Result parsed: ` + res);
+
     if (inputs.annotations) {
       await core.group(`Generating GitHub annotations`, async () => {
         await context.asyncForEach(result, async res => {
@@ -160,6 +164,8 @@ async function run(): Promise<void> {
         });
       });
     }
+
+    core.info(`Inputs parsed: ` + inputs);
 
     await context.asyncForEach(result, async res => {
       if (res.unhealthyMsg) {
