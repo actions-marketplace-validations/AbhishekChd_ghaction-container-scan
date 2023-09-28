@@ -176,7 +176,8 @@ async function run(): Promise<void> {
       core.setFailed(`Container image is unhealthy. Following your desired severity threshold (${inputs.severityThreshold}), the job has been marked as failed.`);
     }
   } catch (error) {
-    core.setFailed(error.message);
+    // core.setFailed(error.message);
+    core.setFailed(error)
   }
 }
 
